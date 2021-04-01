@@ -1,0 +1,46 @@
+{% extends 'base_formularios.html' %}
+{% load static %}
+{% block cursos_centro %}
+
+	<style>
+		.container > .row:first-child{font-size: 14pt;font-weight: bold;font-family: roboto;}
+		.container > .row:first-child + .row {border-top: 1pt solid black;border-bottom: 1pt solid black;}
+		.fila > .col:first-child img{width: 70%;height: 70%}
+		.avance {text-align: center;}
+		.estrellas img{width: 100px;height: 20px;}
+	</style>
+	<div class="container">
+		<div class="row mb-4">
+			<div class="col">
+				Lista de cursos constridos por {{request.user}}
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col-1">Avatar</div>
+			<div class="col-2">Titulo</div>
+			<div class="col-2">Creado el</div>
+			<div class="col-2">Calificacion</div>
+			<div class="col-2">Inscritos</div>
+			<div class="col-2">Ingresos</div>
+		</div>
+		{% for curso in lista %}
+		<div class="fila row">
+			<div class="col col-1">
+				{% if curso.avatar %}
+				     <img src="{{curso.avatar.url}}" alt="">
+				{% endif %}
+			</div>
+			<div class="col-2">{{curso}}</div>
+			<div class="col-2">{{curso.created}}</div>
+			<div class="col-2 estrellas">
+				{% include 'includes/estrellas.html' %}
+			</div>
+			<div class="col-2 avance">{{curso.alumnos}}</div>
+			<div class="col-2 avance">{{ingresos}}</div>
+			<div class="col-1">
+				<a href="{% url 'core:estudio' curso.id %}">Ir</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+	<meta charset="UTF-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<title>Document</title>
+
+
+	{% include 'includes/css.html' %}
+
+	<style>
+	</style>
+</head>
+<body>
+	
+	<main>
+		{% include 'includes/base_comun.html' %}
+		<section>
+			<div>{% block cursos_izquierda %}{% endblock %}</div>
+			<div>{% block cursos_centro %}{% endblock %}</div>
+			<div>Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Hic maiores iure laboriosam libero sit debitis quis aliquid, consequatur possimus explicabo!</div>
+		</section>
+	</main>
+
+	{% include 'includes/js.html' %}
+
+</body>
+</html>

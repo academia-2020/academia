@@ -1,0 +1,86 @@
+{% extends 'base_formularios.html' %}
+{% load static %}
+{% block cursos_centro %}
+	<div class="container">
+		<div class="row mb-4">
+			<div class="col">
+				<h1>Registro de usuarios</h1>
+			</div>
+		</div>
+		<form action="" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="row mb-4">
+				<div class="col-5">
+					<label for="id_username">Nombre del usuario:</label>
+				</div>
+				<div class="col-5">
+					<input class="form-control" type="text" name="username" maxlength="150" autofocus required id="id_username">
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col">
+					<ul>
+						<li>
+							Obligatorio. Longitud maxima 150 caracteres. Letars, digitos y @/./+/-/_ unicamente
+						</li>
+						<li>
+							Campo requerido y debe ser valido, hasta 254 caracteres maximo.
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col-5">
+					<label for="id_email">Email:</label>
+				</div>
+				<div class="col-5">
+					<input class="form-control" type="email" name="email" reqierd id="id_mail">
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col">
+					<ul>
+						<li>
+							Su password no puede ser muy similar a su otra informacion personal
+						</li>
+						<li>
+							Su password es muy corta. Debe tener por lo menos 8 caracteres
+						</li>
+						<li>
+							Su password no puede ser una clave de uso comun
+						</li>
+						<li>
+							Su password no puede ser completamente numerica
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col-5">
+					<label for="id_password1">Password:</label>
+				</div>
+				<div class="col-5">
+					<input class="form-control" type="password" name="password1" id="id_password1" autocomplete="new-password" required >
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col">
+					Para verificar introduzca el misma password que ingreso antes
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col-5">
+					<label for="id_password2">Confirmacion de Password:</label>
+				</div>
+				<div class="col-5">
+					<input class="form-control" type="password" name="password2" id="id_password2" autocomplete="new-password" required >
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col">
+					<input class="btn btn-primary btn-block" type="submit" value="Submit">	
+				</div>
+			</div>
+		</form>
+	</div>
+{% endblock %}

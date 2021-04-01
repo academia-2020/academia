@@ -1,0 +1,55 @@
+{% extends 'base_formularios.html' %}
+{% load static %}
+{% block cursos_centro %}
+
+	<div class="container">
+		<div class="row mb-4">
+			<div class="col">
+				<h1>{{titulo_template}}{{titulo}}</h1>
+			</div>
+		</div>
+
+		{% include 'includes/manejo_errores.html' %}
+
+		<div class="row">
+			<div class="col">
+				<form action="" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% include 'includes/tema_controles.html' %}
+				</form>
+			</div>
+		</div>
+
+		<!-- Detalles -->
+
+		<div class="fila_titulo row mb-4">
+			<div class="col">
+				Detalles del Tema
+			</div>
+		</div>
+		<div class="fila_columnas row mb-2">
+			<div class="col-3">Nombre</div>
+			<div class="col-5">Descripcion</div>
+			<div class="col-2">Tipo</div>
+		</div>
+		{% for detalle in lista_detalles %}
+			<div class="row">
+				<div class="col-3">{{detalle.0.nombre}}</div>
+				<div class="col-5">
+					<button type="button" class="collapsible">Descripcion</button>
+					<span style="display: none;">{{detalle.0.descripcion|safe}}</span>
+				</div>
+				<div class="col-2">{{detalle.1}}</div>
+				<div class="col-1">
+					<a href="{% url 'visitante:editar_detalle' detalle.0.id %}?tema_id={{tema.id}}&capitulo_id={{capitulo.id}}">Editar</a>
+				</div>
+				<div class="col-1">
+					<a href="{% url 'visitante:borrar_detalle' detalle.0.id %}?tema_id={{tema.id}}&capitulo_id={{capitulo.id}}">Borrar</a>
+				</div>
+			</div>
+		{% endfor %}
+		<div class="row mb-5">
+			<a class="btn btn-secondary btn-block mt-2" href="{% url 'visitante:nuevo_detalle' %}?tema_id={{tema.id}}">Nuevo detalle para el tema</a>
+		</div>
+	</div>
+{% endblock %}
